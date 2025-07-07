@@ -1,46 +1,176 @@
-# Getting Started with Create React App
+# SkillSync - AI-Powered Career Pathfinder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+SkillSync is a React-based application that helps users create personalized learning roadmaps for their career development. The application features an intelligent roadmap generator that organizes skills by difficulty and creates step-by-step learning paths.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **RoadmapGenerator Component**: A comprehensive component that displays step-by-step learning roadmaps using cards
+- **Skill Organization**: Automatically groups skills by difficulty (beginner, intermediate, advanced)
+- **Progress Tracking**: Visual progress indicators and completion status for each learning step
+- **Prerequisites Management**: Shows skill dependencies and prerequisites
+- **Resource Links**: Displays learning resources for each skill
+- **Responsive Design**: Built with Tailwind CSS for a modern, responsive interface
+- **TypeScript Support**: Full TypeScript implementation for type safety
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+skill-sync/
+├── src/
+│   ├── components/
+│   │   └── RoadmapGenerator.tsx    # Main roadmap component
+│   ├── pages/
+│   │   └── RoadmapPage.tsx         # Demo page showcasing the component
+│   ├── types/
+│   │   └── index.ts                # TypeScript interfaces
+│   ├── data/
+│   │   └── sampleSkills.ts         # Sample skill data
+│   ├── hooks/                      # Custom React hooks
+│   ├── api/                        # API integration
+│   └── App.tsx                     # Main application component
+├── tailwind.config.js              # Tailwind CSS configuration
+└── package.json
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (version 14 or higher)
+- npm or yarn
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd skill-sync
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start the development server:
+```bash
+npm start
+```
 
-### `npm run eject`
+The application will open at `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## RoadmapGenerator Component
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The `RoadmapGenerator` component is the core feature of SkillSync. It takes a list of skills and automatically creates a structured learning roadmap.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Props
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```typescript
+interface RoadmapGeneratorProps {
+  skills: Skill[];
+  title?: string;
+  description?: string;
+}
+```
 
-## Learn More
+### Skill Interface
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```typescript
+interface Skill {
+  id: string;
+  name: string;
+  description: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  estimatedTime: string;
+  prerequisites?: string[];
+  resources?: string[];
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Usage Example
+
+```tsx
+import RoadmapGenerator from './components/RoadmapGenerator';
+import { sampleSkills } from './data/sampleSkills';
+
+function App() {
+  return (
+    <RoadmapGenerator 
+      skills={sampleSkills}
+      title="Frontend Development Roadmap"
+      description="Master modern web development with this comprehensive learning path"
+    />
+  );
+}
+```
+
+## Features of the RoadmapGenerator
+
+### 1. Automatic Skill Organization
+- Groups skills by difficulty level
+- Creates logical learning progression
+- Handles prerequisites and dependencies
+
+### 2. Visual Progress Tracking
+- Progress bar showing completion percentage
+- Step-by-step completion status
+- Visual indicators for each learning phase
+
+### 3. Interactive Elements
+- Click to mark steps as completed
+- Hover effects on skill cards
+- Responsive grid layout
+
+### 4. Rich Skill Information
+- Difficulty badges with color coding
+- Estimated time for each skill
+- Prerequisites display
+- Learning resources links
+
+### 5. Responsive Design
+- Mobile-friendly layout
+- Adaptive grid system
+- Touch-friendly interactions
+
+## Customization
+
+### Styling
+The component uses Tailwind CSS classes and can be easily customized by modifying the className props.
+
+### Data Structure
+You can extend the Skill interface to include additional properties like:
+- `category`: Skill category
+- `tags`: Skill tags
+- `certification`: Certification information
+- `projects`: Related project ideas
+
+### Adding New Features
+The component is built with extensibility in mind. You can easily add:
+- Skill filtering
+- Search functionality
+- Export capabilities
+- Integration with learning platforms
+
+## Technologies Used
+
+- **React 19**: Modern React with hooks and functional components
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework
+- **PostCSS**: CSS processing
+- **Autoprefixer**: CSS vendor prefixing
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Support
+
+For support and questions, please open an issue in the repository.
